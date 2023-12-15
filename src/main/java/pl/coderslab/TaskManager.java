@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class TaskManager {
     public static void main(String[] args) {
-        printMenu();
+        readTasks();
         Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNext("exit")) {
-            switch (scanner.next()) {
+        String selectedOption = "";
+        while (!selectedOption.equals("exit")) {
+            printMenu();
+            selectedOption = scanner.next();
+            switch (selectedOption) {
                 case "add":
                     addTask();
                     break;
@@ -17,16 +20,19 @@ public class TaskManager {
                 case "list":
                     listTask();
                     break;
+                case "exit":
+                    break;
                 default:
+                    System.out.println(ConsoleColors.RED + "Incorrect selection!" + ConsoleColors.RESET);
                     break;
             }
-            printMenu();
         }
-        System.out.println("End of program");
+        saveTasks();
+        System.out.println(ConsoleColors.RED + "End of program" + ConsoleColors.RESET);
     }
 
     public static void printMenu() {
-        System.out.println(ConsoleColors.GREEN + "Please select an option:"+ ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN + "Please select an option:" + ConsoleColors.RESET);
         System.out.println("add");
         System.out.println("remove");
         System.out.println("list");
@@ -34,8 +40,8 @@ public class TaskManager {
         System.out.print("Your choice: ");
     }
 
-    public static void readTaskFile() {
-        System.out.printf(ConsoleColors.RED + "readTaskFile" + ConsoleColors.RESET);
+    public static void readTasks() {
+        System.out.println(ConsoleColors.RED + "readTasks" + ConsoleColors.RESET);
     }
 
     public static void addTask() {
@@ -48,5 +54,9 @@ public class TaskManager {
 
     public static void removeTask() {
         System.out.println(ConsoleColors.RED + "removeTask" + ConsoleColors.RESET);
+    }
+
+    public static void saveTasks() {
+        System.out.println(ConsoleColors.RED + "saveTasks" + ConsoleColors.RESET);
     }
 }
